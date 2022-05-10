@@ -1,0 +1,9 @@
+[package]
+name = "sje_workspace"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sje_immutable_macro = { path = "../sje_immutable_macro" }

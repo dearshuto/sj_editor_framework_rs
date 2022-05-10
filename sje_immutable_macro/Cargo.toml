@@ -1,0 +1,12 @@
+[package]
+name = "sje_immutable_macro"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0.38"
+quote = "1.0.18"
+syn = {version = "1.0.93", features = ["full", "extra-traits", "visit-mut", "visit"]}

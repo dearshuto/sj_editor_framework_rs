@@ -1,0 +1,5 @@
+[workspace]
+members = [
+        "sje_immutable_macro",
+        "sje_workspace",
+]
