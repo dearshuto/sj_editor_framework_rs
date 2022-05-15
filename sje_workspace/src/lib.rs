@@ -2,6 +2,14 @@
 mod tests {
     use std::sync::Arc;
 
+    #[derive(sje_immutable_macro::Immutable, Default, Clone, Copy)]
+    struct Float2 {
+        #[allow(dead_code)]
+        pub x: f32,
+        #[allow(dead_code)]
+        pub y: f32,
+    }
+
     #[derive(sje_immutable_macro::Immutable, Default)]
     struct TestData {
         #[allow(dead_code)]
@@ -10,6 +18,8 @@ mod tests {
         float_value: f32,
         #[allow(dead_code)]
         uint_value: u32,
+        #[allow(dead_code)]
+        struct_value: Float2,
     }
 
     #[test]

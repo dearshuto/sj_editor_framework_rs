@@ -43,7 +43,7 @@ fn generate_member_functions(derive_input: &DeriveInput) -> Result<TokenStream, 
             .filter(|x| *x != field)
             .map(|x| {
                 let name_info = x.ident.as_ref().unwrap();
-                quote!(#name_info: self.#name_info,)
+                quote!(#name_info: self.#name_info.clone(),)
             })
             .collect::<Vec<_>>();
 
