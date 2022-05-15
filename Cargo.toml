@@ -2,6 +2,5 @@
 members = [
         "sje_core",
         "sje_generator_macro",
-        "sje_immutable_macro",
         "sje_workspace",
 ]

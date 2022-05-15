@@ -33,7 +33,7 @@ pub fn generate_member_functions(derive_input: &DeriveInput) -> Result<TokenStre
             .filter(|x| *x != field)
             .map(|x| {
                 let name_info = x.ident.as_ref().unwrap();
-                quote!(#name_info: self.#name_info,)
+                quote!(#name_info: self.#name_info.clone(),)
             })
             .collect::<Vec<_>>();
         let name_info = field.ident.as_ref().unwrap();
