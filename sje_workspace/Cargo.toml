@@ -6,4 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-sje_immutable_macro = { path = "../sje_immutable_macro" }
+uuid = { version = "1.0.0", features = ["v4", "fast-rng", "macro-diagnostics"] }
+im = "*"
+tokio = { version = "1.18.2", features = ["full"] }
+sje_core = { path = "../sje_core" }
+sje_generator_macro = { path = "../sje_generator_macro" }
+
+[dev-dependencies]
+egui = "0.18.1"
+eframe = "*"
