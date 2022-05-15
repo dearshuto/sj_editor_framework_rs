@@ -45,12 +45,30 @@ pub fn generate_member_functions(derive_input: &DeriveInput) -> Result<TokenStre
                 .parse()
                 .unwrap();
 
+        // update_XX 形式で関数を生やす
+        let generated_update_method_name: proc_macro2::TokenStream =
+            format!("update_{}", name_info.unraw().to_string())
+                .parse()
+                .unwrap();
+
         // 関数本体の生成
         // fn with_value(&self, value) -> Arc<Self> {}
         fields.push(quote! {
             pub fn #generated_method_name(&self, value: #type_info) -> Arc<Self> {
                 let new_instance = Self {
                     #name_info: value,
+                    #(#init_fields)*
+                };
+                Arc::new(new_instance)
+            }
+        });
+
+        // fn update_value<TFunc: Fn(Arc<T>) -> Arc<T>>(&self, updater: TFunc) -> Arc<Self> {}
+        fields.push(quote! {
+            pub fn #generated_update_method_name<TFunc: Fn(#type_info) -> #type_info>(&self, updater: TFunc) -> Arc<Self> {
+                let new_value = updater(self.#name_info.clone());
+                let new_instance = Self {
+                    #name_info: new_value,
                     #(#init_fields)*
                 };
                 Arc::new(new_instance)
